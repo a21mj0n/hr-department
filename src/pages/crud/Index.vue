@@ -1,12 +1,14 @@
 <template>
-  <table-app
-    ref="dataTable"
-    :data="data"
-    :columns="columns"
-    @filter-gender="filterGender"
-    @filter-cancel="onCancel"
-    @on-remove="onRemove($event)"
-  />
+  <div class="container">
+    <table-app
+      ref="dataTable"
+      :data="data"
+      :columns="columns"
+      @filter-gender="filterGender"
+      @filter-cancel="onCancel"
+      @on-remove="onRemove($event)"
+    />
+  </div>
 </template>
 
 <script>
