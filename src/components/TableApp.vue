@@ -1,5 +1,5 @@
 <template>
-  <div class="table-responsive p-5">
+  <div class="table-responsive">
 
     <div v-if="toolbar" class="d-flex justify-content-between align-items-center mb-3">
       <div>
