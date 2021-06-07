@@ -4,8 +4,13 @@ import ErrorPage from '../pages/ErrorPage';
 import EmployeesPage from '../pages/crud/Index';
 import Create from '../pages/crud/Create';
 import Edit from '../pages/crud/Edit';
+import TestPage from "../pages/test/TestPage";
 
 const routes = [
+  {
+    path: '/test',
+    component: TestPage,
+  },
   {
     path: '/',
     name: 'dashboard',
@@ -23,7 +28,7 @@ const routes = [
     props: (route) => ({ employeeId: route.params.id }),
   },
   {
-    path: '/employees/create',
+    path: '/employee/add',
     name: 'emp-create',
     component: Create,
   },

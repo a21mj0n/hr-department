@@ -4,11 +4,23 @@
     <form>
       <div class="form-group">
         <label for="fio">FIO</label>
-        <input v-model="fio" type="text" class="form-control" id="fio" placeholder="Enter FIO">
+        <input
+          v-model="fio"
+          type="text"
+          class="form-control"
+          id="fio"
+          placeholder="Enter FIO"
+          disabled
+        >
       </div>
       <div class="form-group">
         <label for="department">Example select</label>
-        <select v-model="department" class="form-control" id="department">
+        <select
+          v-model="department"
+          class="form-control"
+          id="department"
+          disabled
+        >
           <option>Bookkeeping</option>
           <option>IT</option>
           <option>Marketing</option>
@@ -16,26 +28,34 @@
       </div>
       <div class="form-group">
         <label for="position">Position</label>
-        <input v-model="position" type="text" class="form-control" id="position" placeholder="Password">
+        <input
+          v-model="position"
+          type="text"
+          class="form-control"
+          id="position"
+          placeholder="Password"
+          disabled
+        >
       </div>
       <div class="form-group">
         <label for="birthday">Check me out</label>
         <input
-          v-model="birthday"
           type="date"
           class="form-control"
           id="birthday"
+          disabled
+          :value="birthday"
           @change="onChangeDate"
         >
       </div>
-      <button class="btn btn-primary" @click="onSubmit">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
 import VueTypes from 'vue-types';
-import { httpGet, put } from '../services/http';
+import { httpGet } from '../services/http';
+import moment from 'moment/moment';
 
 export default {
   name: 'EmployeePage',
@@ -52,28 +72,15 @@ export default {
     };
   },
   async created() {
-    const { data: employee } = await httpGet('employees', {
-      id: this.employeeId,
-    });
-    this.fio = employee[0].fio;
-    this.department = employee[0].department;
-    this.position = employee[0].position;
-    this.birthday = employee[0].birthday;
+    const { data: employee } = await httpGet(`employees/${this.employeeId}`);
+    this.fio = employee.fio;
+    this.department = employee.department;
+    this.position = employee.position;
+    this.birthday = moment(employee.birthday).format('yyyy-MM-DD');
   },
   methods: {
-    async onSubmit(e) {
-      e.preventDefault();
-      try {
-        await put('employees', this.employeeId, {
-          fio: this.fio,
-          department: this.department,
-          position: this.position,
-          birthday: this.birthday,
-        });
-        await this.$router.push({ name: 'employees' });
-      } catch (e) {
-        this.error = e.response;
-      }
+    onChangeDate(event) {
+      this.birthday = event.target.value;
     },
   },
 };

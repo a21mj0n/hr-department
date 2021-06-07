@@ -16,6 +16,8 @@ import {
   faFileInvoiceDollar,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import VueHtmlToPaper from 'vue-html-to-paper';
+Vue.use(VueHtmlToPaper);
 
 library.add(faUsers, faMale, faFemale, faUniversity, faSortNumericUpAlt, faLaptop, faPollH, faFileInvoiceDollar);
 

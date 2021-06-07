@@ -17,7 +17,7 @@ import TableApp from '../../components/TableApp';
 import { httpGet, remove } from '../../services/http';
 
 export default {
-  name: 'DashboardPage',
+  name: 'Index',
   components: {
     TableApp,
   },

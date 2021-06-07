@@ -17,7 +17,7 @@ function generateEmployees() {
       birthday,
     });
   }
-  return { 'employees': employees };
+  return { employees };
 }
 
 module.exports = generateEmployees;
