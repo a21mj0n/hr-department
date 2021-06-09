@@ -30,7 +30,7 @@
           <div class="col-lg-3">
             <dashboard-card
               title="Средний возраст сотрудника в компании"
-              :count="125"
+              :count="avg"
               icon="sort-numeric-up-alt"
               icon-color="text-warning"
             />
@@ -64,6 +64,7 @@ export default {
       maleCount: 'staff/countMale',
       femaleCount: 'staff/countFemale',
       inEachDepartment: 'staff/employeeInEachDepartment',
+      avg: 'staff/averageAge'
     }),
   },
   created() {

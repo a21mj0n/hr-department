@@ -12,6 +12,7 @@
           placeholder="Enter FIO"
         >
       </div>
+
       <div class="form-group">
         <label for="department">Example select</label>
         <select
@@ -24,6 +25,7 @@
           <option>Marketing</option>
         </select>
       </div>
+
       <div class="form-group">
         <label for="position">Position</label>
         <input
@@ -34,6 +36,7 @@
           placeholder="Position"
         >
       </div>
+
       <div class="form-group">
         <label for="birthday">Check me out</label>
         <input
@@ -44,6 +47,7 @@
           @change="onChangeDate"
         >
       </div>
+
       <button class="btn btn-primary" @click="onSubmit">Submit</button>
     </form>
   </div>

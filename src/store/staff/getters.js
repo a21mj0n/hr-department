@@ -1,3 +1,5 @@
+import { reduce } from 'lodash-es';
+
 export function all(state) {
   return state.staff;
 }
@@ -24,6 +26,26 @@ export function countIT(state, getters) {
 
 export function countMarketing(state, getters) {
   return getters.all.filter(({ department }) => department === 'Marketing').length;
+}
+
+export function averageAge(state, getters) {
+  // array of employees ages
+  const ages = [];
+
+  getters.all.forEach(({ birthday }) => {
+
+    // calculate difference
+    const difference = new Date() - new Date(birthday);
+
+    //calculate age of employees
+    ages.push(Math.floor((difference / (1000 * 3600 * 24)) / 365));
+  });
+
+  const ageSummary = reduce(ages, (sum, age) => {
+    return sum + age;
+  }, 0);
+
+  return state.averageAge = Math.round(ageSummary / getters.count);
 }
 
 export function employeeInEachDepartment(state, getters) {
