@@ -29,7 +29,7 @@ export function countMarketing(state, getters) {
 }
 
 export function averageAge(state, getters) {
-  // array of employees ages
+  // array of employees age
   const ages = [];
 
   getters.all.forEach(({ birthday }) => {
@@ -37,7 +37,7 @@ export function averageAge(state, getters) {
     // calculate difference
     const difference = new Date() - new Date(birthday);
 
-    //calculate age of employees
+    //calculate age of employees and put into array
     ages.push(Math.floor((difference / (1000 * 3600 * 24)) / 365));
   });
 
