@@ -1,56 +1,58 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000/';
+class Http {
+  #baseUrl = 'http://localhost:3000/';
 
-function httpGet(model, params = {}) {
-  if (!model) {
-    return new Error('model name does not given');
+  get(model, params = {}) {
+    if (!model) {
+      return new Error('model name does not given');
+    }
+
+    return axios.request({
+      baseURL: this.#baseUrl,
+      method: 'get',
+      url: model,
+      params,
+    });
   }
 
-  return axios.request({
-    baseURL: baseUrl,
-    method: 'get',
-    url: model,
-    params,
-  });
-}
+  post(model, data = {}) {
+    if (!model) {
+      return new Error('model name does not given');
+    }
 
-function httpPost(model, data = {}) {
-  if (!model) {
-    return new Error('model name does not given');
+    return axios.request({
+      baseURL: this.#baseUrl,
+      method: 'post',
+      url: model,
+      data,
+    });
   }
 
-  return axios.request({
-    baseURL: baseUrl,
-    method: 'post',
-    url: model,
-    data,
-  });
-}
+  remove(model, id) {
+    if (!model || !id) {
+      return new Error('model or id does not given');
+    }
 
-function remove(model, id) {
-  if (!model || !id) {
-    return new Error('model or id does not given');
+    return axios.request({
+      baseURL: this.#baseUrl,
+      method: 'delete',
+      url: `${model}/${id}`,
+    });
   }
 
-  return axios.request({
-    baseURL: baseUrl,
-    method: 'delete',
-    url: `${model}/${id}`,
-  });
-}
+  put(model, id, data) {
+    if (!model || !id) {
+      return new Error('model or id does not given');
+    }
 
-function put(model, id, data) {
-  if (!model || !id) {
-    return new Error('model or id does not given');
+    return axios.request({
+      baseURL: this.#baseUrl,
+      method: 'put',
+      url: `${model}/${id}`,
+      data,
+    });
   }
-
-  return axios.request({
-    baseURL: baseUrl,
-    method: 'put',
-    url: `${model}/${id}`,
-    data,
-  });
 }
 
-export { httpGet, httpPost, put, remove };
+export default new Http;

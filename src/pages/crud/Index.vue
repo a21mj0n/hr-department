@@ -14,7 +14,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import TableApp from '../../components/TableApp';
-import { httpGet, remove } from '../../services/http';
+import http from '../../services/http';
 
 export default {
   name: 'Index',
@@ -33,12 +33,12 @@ export default {
     }),
   },
   async created() {
-    const { data: employees } = await httpGet('employees');
+    const { data: employees } = await http.get('employees');
     await this.$store.dispatch('staff/fetchStaff', employees);
   },
   methods: {
     async filterGender(gender) {
-      const { data: filteredByGender } = await httpGet(`employees`, {
+      const { data: filteredByGender } = await http.get(`employees`, {
         gender,
       });
       await this.$store.dispatch('staff/fetchStaff', filteredByGender);
@@ -47,7 +47,7 @@ export default {
       await this.$store.dispatch('staff/fetchStaffAll');
     },
     async onRemove(id) {
-      await remove('employees', id);
+      await http.remove('employees', id);
       await this.$store.dispatch('staff/fetchStaffAll');
     },
   },

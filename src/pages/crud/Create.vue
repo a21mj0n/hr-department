@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { httpPost } from '../../services/http';
+import http from '../../services/http';
 
 export default {
   name: 'Create',
@@ -81,7 +81,7 @@ export default {
     },
     async onCreate() {
       try {
-        await httpPost('employees', {
+        await http.post('employees', {
           fio: this.fio,
           department: this.department,
           position: this.position,

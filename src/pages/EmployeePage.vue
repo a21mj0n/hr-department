@@ -54,7 +54,7 @@
 
 <script>
 import VueTypes from 'vue-types';
-import { httpGet } from '../services/http';
+import http from '../services/http';
 import moment from 'moment/moment';
 
 export default {
@@ -72,7 +72,7 @@ export default {
     };
   },
   async created() {
-    const { data: employee } = await httpGet(`employees/${this.employeeId}`);
+    const { data: employee } = await http.get(`employees/${this.employeeId}`);
     this.fio = employee.fio;
     this.department = employee.department;
     this.position = employee.position;

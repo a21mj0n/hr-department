@@ -1,8 +1,8 @@
-import { httpGet } from '../../services/http';
+import http from '../../services/http';
 
 
 export async function fetchStaffAll({ commit }) {
-  const { data: employees } = await httpGet('employees');
+  const { data: employees } = await http.get('employees');
   commit('setStaff', employees);
 }
 
